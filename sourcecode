@@ -1,0 +1,48 @@
+
+/* Extract and separates integers and strings from string line */
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+void extractIntegerStrings(stringstream  &bs)
+{
+    //Declares the strings and integers
+    string strings;
+    int ints;
+    //will run code until it hits the end of file
+    while (!bs.eof()) {
+        
+        // gets the strings from the stringstream
+        bs >> strings;
+        
+        //will separate the strings and integers from string line
+ 
+        if (stringstream(strings) >> ints)
+            //will displays ints from stringstream
+            cout << "This is an integer ["<< ints << "]" << " \n";
+        else
+            //will display strings from stringstream
+            cout << "This is a string [" << strings << "]" <<  " \n";
+        
+        
+    }
+}
+
+
+int main()
+{
+    //Declares string and stringstream
+    string str;
+    stringstream test;
+    //Asks user for unlimited input until they choose to end it
+    cout << "Enter expression: " << endl << "Enter F to stop input"<< endl;
+    //Loop will end whenever user enters F and will send info to a different function
+    while(getline(cin ,str))
+    {
+        test << str << endl;
+        if (str == "F")
+            extractIntegerStrings(test);
+        
+    }
+    return 0;
+}
